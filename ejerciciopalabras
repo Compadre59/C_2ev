@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_LENGTH 50 // Longitud máxima de una palabra
+#define NUM_PALABRAS 10 // Número de palabras
+
+int main() {
+    char palabras[NUM_PALABRAS][MAX_LENGTH]; // Matriz para almacenar las palabras
+    int i, j;
+
+    // Leer las palabras
+    printf("Introduce %d palabras:\n", NUM_PALABRAS);
+    for (i = 0; i < NUM_PALABRAS; i++) {
+        scanf("%s", palabras[i]);
+    }
+
+    // Ordenar las palabras por longitud manualmente (burbuja)
+    for (i = 0; i < NUM_PALABRAS - 1; i++) {
+        for (j = 0; j < NUM_PALABRAS - 1 - i; j++) {
+            if (strlen(palabras[j]) > strlen(palabras[j + 1])) {
+                // Intercambiar las palabras si la longitud de la palabra actual es mayor que la siguiente
+                char temp[MAX_LENGTH];
+                strcpy(temp, palabras[j]);
+                strcpy(palabras[j], palabras[j + 1]);
+                strcpy(palabras[j + 1], temp);
+            }
+        }
+    }
+
+    // Mostrar las palabras ordenadas
+    printf("Palabras ordenadas por longitud:\n");
+    for (i = 0; i < NUM_PALABRAS; i++) {
+        printf("%s\n", palabras[i]);
+    }
+
+    return 0;
+}
